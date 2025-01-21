@@ -119,3 +119,38 @@ func fetchDirectors(completion: @escaping (Result<[DirectorFields], Error>) -> V
         }
     }.resume()
 }
+
+
+// Fetch user
+
+func fetchUsers(completion: @escaping (Result<[UserFields], Error>) -> Void) {
+    guard let url = URL(string: "https://api.airtable.com/v0/appsfcB6YESLj4NCN/users") else {
+        print("Invalid URL")
+        return
+    }
+
+    var request = URLRequest(url: url)
+    request.httpMethod = "GET"
+    request.addValue("Bearer pat7E88yW3dgzlY61.2b7d03863aca9f1262dcb772f7728bd157e695799b43c7392d5faf4f52fcb001", forHTTPHeaderField: "Authorization")
+
+    URLSession.shared.dataTask(with: request) { data, response, error in
+        if let error = error {
+            completion(.failure(error))
+            return
+        }
+
+        guard let data = data else {
+            print("No data received")
+            return
+        }
+
+        do {
+            let response = try JSONDecoder().decode(UserResponse.self, from: data)
+            let users = response.records.map { $0.fields }
+            completion(.success(users))
+        } catch {
+            completion(.failure(error))
+        }
+    }.resume()
+}
+

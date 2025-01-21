@@ -31,6 +31,7 @@ struct ContentView: View {
                 
                 // Navigation Links for Other Sections
                 Section(header: Text("Other Sections")) {
+                    NavigationLink("Movie Center", destination: MovieCenterView()) // New Navigation Link
                     NavigationLink("Actors", destination: ActorListView())
                     NavigationLink("Directors", destination: DirectorListView())
                 }

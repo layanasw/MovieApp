@@ -10,8 +10,8 @@ import SwiftUI
 @main
 struct MovieAppApp: App {
     var body: some Scene {
-        WindowGroup {
-            ContentView()
-        }
-    }
-}
+           WindowGroup {
+               SignInView() // Start with the Sign-In Page
+           }
+       }
+   }
