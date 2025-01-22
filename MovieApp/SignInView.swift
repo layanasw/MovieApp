@@ -95,7 +95,7 @@ struct SignInView: View {
             .padding()
         }
         .fullScreenCover(isPresented: $isAuthenticated) {
-            ContentView() // Navigate to the dashboard upon successful sign-in
+            MovieCenterView() // Navigate to the Movie Center upon successful sign-in
         }
     }
 

@@ -29,11 +29,10 @@ struct ContentView: View {
                     }
                 }
                 
-                // Navigation Links for Other Sections
+                // Future Placeholder for Other Sections
                 Section(header: Text("Other Sections")) {
-                    NavigationLink("Movie Center", destination: MovieCenterView()) // New Navigation Link
-                    NavigationLink("Actors", destination: ActorListView())
-                    NavigationLink("Directors", destination: DirectorListView())
+                    Text("Actors Section (Coming Soon)")
+                    Text("Directors Section (Coming Soon)")
                 }
             }
             .navigationTitle("Dashboard")

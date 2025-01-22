@@ -72,15 +72,14 @@ struct MovieCenterView: View {
                         print("Show More Drama Movies tapped")
                     }) {
                         Text("Show more")
-                            .font(.system(size: 14, weight: .medium)) // Smaller font size
+                            .font(.system(size: 16, weight: .bold))
                             .foregroundColor(.yellow)
-                            .padding(.vertical, 4) // Slimmer padding
-                            .padding(.horizontal, 8)
-                            .background(
-                                RoundedRectangle(cornerRadius: 8)
-                                    .stroke(Color.yellow, lineWidth: 1) // Optional border
-                            )
                     }
+                    .padding(.horizontal)
+
+                    
+                    
+                    
                     .padding(.horizontal)
                 }
 
