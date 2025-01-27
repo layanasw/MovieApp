@@ -64,7 +64,7 @@ struct MovieCenterView: View {
                     } else {
                         // High Rated Movies with Page Indicator
                         TabView(selection: $highRatedIndex) {
-                            ForEach(viewModel.movies.prefix(3), id: \.name) { movie in
+                            ForEach(viewModel.movies.prefix(10), id: \.name) { movie in
                                 HighRatedMovieCard(movie: movie)
                                     .frame(width: 366, height: 434)
                                     .tag(viewModel.movies.firstIndex(where: { $0.name == movie.name }) ?? 0)
