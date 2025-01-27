@@ -39,8 +39,8 @@ struct HighRatedMovieCard: View {
                     startPoint: .bottom,
                     endPoint: .top
                 )
-                .cornerRadius(15)
             )
+            .cornerRadius(15)
         }
         .frame(width: 366, height: 434) // Ensure card frame matches poster size
     }

@@ -65,9 +65,11 @@ struct MovieCenterView: View {
                         // High Rated Movies with Page Indicator
                         TabView(selection: $highRatedIndex) {
                             ForEach(viewModel.movies.prefix(10), id: \.name) { movie in
-                                HighRatedMovieCard(movie: movie)
-                                    .frame(width: 366, height: 434)
-                                    .tag(viewModel.movies.firstIndex(where: { $0.name == movie.name }) ?? 0)
+                                NavigationLink(destination: MovieDetailsView(movie: movie)) {
+                                    HighRatedMovieCard(movie: movie)
+                                        .frame(width: 366, height: 434)
+                                        .tag(viewModel.movies.firstIndex(where: { $0.name == movie.name }) ?? 0)
+                                }
                             }
                         }
                         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .automatic))
@@ -78,14 +80,22 @@ struct MovieCenterView: View {
                     CategorySection(
                         title: "Drama",
                         movies: viewModel.movies.filter { $0.genre.contains("Drama") },
-                        cardView: { DramaMovieCard(movie: $0) }
+                        cardView: { movie in
+                            NavigationLink(destination: MovieDetailsView(movie: movie)) {
+                                DramaMovieCard(movie: movie)
+                            }
+                        }
                     )
 
                     // 5. Action Section
                     CategorySection(
                         title: "Action",
                         movies: viewModel.movies.filter { $0.genre.contains("Action") },
-                        cardView: { ActionMovieCard(movie: $0) }
+                        cardView: { movie in
+                            NavigationLink(destination: MovieDetailsView(movie: movie)) {
+                                ActionMovieCard(movie: movie)
+                            }
+                        }
                     )
                 }
                 .padding(.vertical)
@@ -150,8 +160,10 @@ struct CategoryMoviesListView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 15) {
                 ForEach(movies, id: \.name) { movie in
-                    DramaMovieCard(movie: movie)
-                        .padding(.horizontal)
+                    NavigationLink(destination: MovieDetailsView(movie: movie)) {
+                        DramaMovieCard(movie: movie)
+                    }
+                    .padding(.horizontal)
                 }
             }
             .padding(.top)

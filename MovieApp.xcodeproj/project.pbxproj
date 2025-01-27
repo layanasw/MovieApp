@@ -10,6 +10,7 @@
 		BBA0132C2D4658C4003BC40B /* ProfilePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA0132B2D4658C4003BC40B /* ProfilePage.swift */; };
 		BBA0132E2D4658EB003BC40B /* ProfileInfoPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA0132D2D4658EB003BC40B /* ProfileInfoPage.swift */; };
 		BBA013302D47AFB3003BC40B /* ActionMovieCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA0132F2D47AFB2003BC40B /* ActionMovieCard.swift */; };
+		BBA013322D47CDB3003BC40B /* MovieDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA013312D47CDB3003BC40B /* MovieDetailsView.swift */; };
 		BBB1014B2D3EA58700A5B5F7 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB1014A2D3EA58700A5B5F7 /* Movie.swift */; };
 		BBB101532D400CD700A5B5F7 /* UserModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB101522D400CD700A5B5F7 /* UserModels.swift */; };
 		BBB101552D400DBE00A5B5F7 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB101542D400DBE00A5B5F7 /* SignInView.swift */; };
@@ -35,6 +36,7 @@
 		BBA0132B2D4658C4003BC40B /* ProfilePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePage.swift; sourceTree = "<group>"; };
 		BBA0132D2D4658EB003BC40B /* ProfileInfoPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoPage.swift; sourceTree = "<group>"; };
 		BBA0132F2D47AFB2003BC40B /* ActionMovieCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionMovieCard.swift; sourceTree = "<group>"; };
+		BBA013312D47CDB3003BC40B /* MovieDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsView.swift; sourceTree = "<group>"; };
 		BBB1014A2D3EA58700A5B5F7 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		BBB101522D400CD700A5B5F7 /* UserModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModels.swift; sourceTree = "<group>"; };
 		BBB101542D400DBE00A5B5F7 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 				BBA0132F2D47AFB2003BC40B /* ActionMovieCard.swift */,
 				BBB101542D400DBE00A5B5F7 /* SignInView.swift */,
 				BBB101582D4029FE00A5B5F7 /* HighRatedMovieCard.swift */,
+				BBA013312D47CDB3003BC40B /* MovieDetailsView.swift */,
 				BBB101562D40283800A5B5F7 /* MovieCenterView.swift */,
 				BBE8F1B92D3D231C00D53C8E /* Assets.xcassets */,
 				BBE8F1BB2D3D231C00D53C8E /* Preview Content */,
@@ -222,6 +225,7 @@
 				BBE8F1CE2D3E9DDF00D53C8E /* ActorViewModel.swift in Sources */,
 				BBB101532D400CD700A5B5F7 /* UserModels.swift in Sources */,
 				BBB101552D400DBE00A5B5F7 /* SignInView.swift in Sources */,
+				BBA013322D47CDB3003BC40B /* MovieDetailsView.swift in Sources */,
 				BBE8F1D22D3E9F7F00D53C8E /* DirectorModels.swift in Sources */,
 				BBE8F1D02D3E9EFB00D53C8E /* ActorListView.swift in Sources */,
 				BBB101592D4029FE00A5B5F7 /* HighRatedMovieCard.swift in Sources */,
