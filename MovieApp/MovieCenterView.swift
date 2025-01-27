@@ -75,38 +75,18 @@ struct MovieCenterView: View {
                     }
 
                     // 4. Drama Section
-                    HStack {
-                        Text("Drama")
-                            .font(.system(size: 20, weight: .bold))
-                            .foregroundColor(.white)
-                            .padding(.horizontal)
-                        Spacer()
-                        Button(action: {
-                            print("Show More Drama Movies tapped")
-                        }) {
-                            Text("Show more")
-                                .font(.system(size: 16, weight: .bold))
-                                .foregroundColor(.yellow)
-                        }
-                        .padding(.horizontal)
-                    }
+                    CategorySection(
+                        title: "Drama",
+                        movies: viewModel.movies.filter { $0.genre.contains("Drama") },
+                        cardView: { DramaMovieCard(movie: $0) }
+                    )
 
-                    let dramaMovies = viewModel.movies.filter { $0.genre.contains("Drama") }
-                    if !dramaMovies.isEmpty {
-                        ScrollView(.horizontal, showsIndicators: false) {
-                            HStack(spacing: 15) {
-                                ForEach(dramaMovies.prefix(5), id: \.name) { movie in
-                                    DramaMovieCard(movie: movie)
-                                        .frame(width: 208, height: 275)
-                                }
-                            }
-                            .padding(.horizontal)
-                        }
-                    } else {
-                        Text("No Drama movies available")
-                            .foregroundColor(.white)
-                            .padding(.horizontal)
-                    }
+                    // 5. Action Section
+                    CategorySection(
+                        title: "Action",
+                        movies: viewModel.movies.filter { $0.genre.contains("Action") },
+                        cardView: { ActionMovieCard(movie: $0) }
+                    )
                 }
                 .padding(.vertical)
             }
@@ -114,3 +94,70 @@ struct MovieCenterView: View {
         }
     }
 }
+
+// Reusable Category Section Component
+struct CategorySection<CardView: View>: View {
+    let title: String
+    let movies: [MovieFields]
+    let cardView: (MovieFields) -> CardView
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            // Section Title and Show More Button
+            HStack {
+                Text(title)
+                    .font(.system(size: 20, weight: .bold))
+                    .foregroundColor(.white)
+                    .padding(.horizontal)
+
+                Spacer()
+
+                NavigationLink(destination: CategoryMoviesListView(movies: movies, title: title)) {
+                    Text("Show more")
+                        .font(.system(size: 16, weight: .bold))
+                        .foregroundColor(.yellow)
+                }
+                .padding(.horizontal)
+            }
+
+            if !movies.isEmpty {
+                // Horizontal ScrollView for Movie Cards
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 15) {
+                        ForEach(movies.prefix(5), id: \.name) { movie in
+                            cardView(movie)
+                                .frame(width: 208, height: 275)
+                        }
+                    }
+                    .padding(.horizontal)
+                }
+            } else {
+                // No Movies Available Text
+                Text("No \(title) movies available")
+                    .foregroundColor(.white)
+                    .padding(.horizontal)
+            }
+        }
+    }
+}
+
+// Placeholder for Full Movie List View
+struct CategoryMoviesListView: View {
+    let movies: [MovieFields]
+    let title: String
+
+    var body: some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 15) {
+                ForEach(movies, id: \.name) { movie in
+                    DramaMovieCard(movie: movie)
+                        .padding(.horizontal)
+                }
+            }
+            .padding(.top)
+        }
+        .navigationTitle("\(title) Movies")
+        .background(Color.black.ignoresSafeArea())
+    }
+}
+
