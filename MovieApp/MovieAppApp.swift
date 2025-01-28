@@ -8,10 +8,13 @@
 import SwiftUI
 
 @main
-struct MovieAppApp: App {
+struct MovieApp: App {
+    @StateObject private var savedMoviesVM = SavedMoviesViewModel()
+
     var body: some Scene {
-           WindowGroup {
-               SignInView() // Start with the Sign-In Page
-           }
-       }
-   }
+        WindowGroup {
+            SignInView()
+                .environmentObject(savedMoviesVM) // Inject the saved movies view model
+        }
+    }
+}

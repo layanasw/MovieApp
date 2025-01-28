@@ -8,115 +8,54 @@ import SwiftUI
 
 struct MovieDetailsView: View {
     let movie: MovieFields
+    @EnvironmentObject var savedMoviesVM: SavedMoviesViewModel // Use the SavedMoviesViewModel
 
     var body: some View {
         ScrollView {
-            ZStack(alignment: .bottomLeading) {
-                // Full-Screen Poster
+            VStack(alignment: .leading, spacing: 20) {
+                // Poster
                 AsyncImage(url: URL(string: movie.poster)) { image in
-                    image
-                        .resizable()
+                    image.resizable()
                         .scaledToFill()
-                        .frame(maxWidth: .infinity, minHeight: 450, maxHeight: 450) // Adjust height as needed
+                        .frame(height: 300)
                         .clipped()
                 } placeholder: {
                     Rectangle()
                         .fill(Color.gray)
-                        .frame(maxWidth: .infinity, minHeight: 400, maxHeight: 400)
+                        .frame(height: 300)
                 }
 
-                // Movie Title on Top of the Poster
+                // Movie Name
                 Text(movie.name)
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .foregroundColor(.white)
-                    .padding()
-                    .background(
-                        LinearGradient(
-                            gradient: Gradient(colors: [Color.black.opacity(0.6), Color.clear]),
-                            startPoint: .bottom,
-                            endPoint: .top
-                        )
-                    )
-                    .frame(maxWidth: .infinity, alignment: .leading)
-            }
-            .frame(maxWidth: .infinity, maxHeight: 400) // Ensures poster stays at the top
+                    .padding(.horizontal)
 
-            // Details Below the Poster
-            VStack(alignment: .leading, spacing: 20) {
-                // Movie Details Grid
-                VStack(spacing: 20) {
-                    HStack {
-                        VStack(alignment: .leading) {
-                            Text("Duration")
-                                .font(.headline)
-                                .foregroundColor(.white)
-                            Text(movie.runtime)
-                                .foregroundColor(.gray)
-                        }
-                        Spacer()
-                        VStack(alignment: .leading) {
-                            Text("Language")
-                                .font(.headline)
-                                .foregroundColor(.white)
-                            Text(movie.language.joined(separator: ", "))
-                                .foregroundColor(.gray)
-                        }
-                    }
-
-                    HStack {
-                        VStack(alignment: .leading) {
-                            Text("Genre")
-                                .font(.headline)
-                                .foregroundColor(.white)
-                            Text(movie.genre.first ?? "N/A") // Only the first genre
-                                .foregroundColor(.gray)
-                        }
-                        Spacer()
-                        VStack(alignment: .leading) {
-                            Text("Age")
-                                .font(.headline)
-                                .foregroundColor(.white)
-                            Text(movie.rating)
-                                .foregroundColor(.gray)
-                        }
-                    }
+                // Save Button
+                Button(action: {
+                    savedMoviesVM.addMovie(movie)
+                }) {
+                    Text("Save Movie")
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(Color.yellow)
+                        .foregroundColor(.black)
+                        .cornerRadius(10)
+                        .padding(.horizontal)
                 }
-                .padding(.horizontal)
 
-                // Movie Story
+                // Other Details
                 VStack(alignment: .leading, spacing: 10) {
-                    Text("Story")
-                        .font(.title2)
-                        .fontWeight(.bold)
-                        .foregroundColor(.white)
-
-                    Text(movie.story)
-                        .foregroundColor(.white)
-                        .lineSpacing(5)
+                    Text("Duration: \(movie.runtime)")
+                    Text("Language: \(movie.language.joined(separator: ", "))")
+                    Text("Age Rating: \(movie.rating)")
+                    Text("Genre: \(movie.genre.first ?? "N/A")")
+                    Text("Story: \(movie.story)")
+                    Text("IMDb Rating: \(movie.IMDb_rating)/10")
                 }
+                .foregroundColor(.white)
                 .padding(.horizontal)
-
-                // IMDb Rating Section
-                VStack(alignment: .leading, spacing: 5) {
-                    Text("IMDb Rating")
-                        .font(.headline)
-                        .foregroundColor(.white)
-
-                    Text("\(movie.IMDb_rating)/10")
-                        .font(.title3)
-                        .fontWeight(.regular)
-                        .foregroundColor(.gray)
-                        .padding(.bottom, 8)
-
-                    // iOS Line Under IMDb Rating
-                    Divider()
-                        .background(Color.gray)
-                }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.horizontal)
-
-                Spacer()
             }
         }
         .background(Color.black.ignoresSafeArea())
